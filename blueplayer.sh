@@ -1,7 +1,10 @@
 #!/bin/bash
 #Blueplayer, by Giorgio Acquati
 
-BADDR="78_F8_82_6C_65_6B"
+#IMPORTANT!!!
+#Change the value of the following variable to the bluetooth address of the device you wish to remotely control
+BADDR="68_F8_82_6C_65_6B"
+
 title="Unknown Title"
 artist="Unknown Artist"
 album="Unknown Album"
@@ -72,7 +75,7 @@ startNotifying() {
 }
 
 echoDevices() {
-	python3 /home/giorgio/Documents/scripts/blueplayer/getObj.py |
+	python3 $(pwd)/getObj.py |
 	while read -r line; do
 		if [[ $(grep -o "/" <<< "$line" | wc -l) == 4 ]]; then
 			echo $line
