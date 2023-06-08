@@ -3,7 +3,10 @@
 
 #IMPORTANT!!!
 #Change the value of the following variable to the bluetooth address of the device you wish to remotely control
-BADDR="68_F8_82_6C_65_6B"
+#BADDR="68_F8_82_6C_65_6B"
+
+#New - AutoIdentify Bluetooth Mac Address
+BADDR=`bluetoothctl devices | cut -f2 -d' ' | while read uuid; do bluetoothctl info $uuid; done|grep -e "Device\|Connected\|Name" | grep -i "Connected: yes" -C2 | grep Device | awk '{print $2}' | sed s/:/_/g | head -1`
 
 title="Unknown Title"
 artist="Unknown Artist"
